@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14df5e5d370fe442a7f10f857106ff8, type: 3}
+  m_Name: Skin
+  m_EditorClassIdentifier: 
+  HeadNorth: {fileID: 11400000, guid: e115e283303c30b44bed3b7af470c885, type: 2}
+  HeadSouth: {fileID: 11400000, guid: 0de026432b5092f40afb0480f9e47427, type: 2}
+  HeadWest: {fileID: 11400000, guid: bbbf2abb561579849b7654d73389d046, type: 2}
+  HeadEast: {fileID: 11400000, guid: 3d83c681649ea834a846c7f3abcecef4, type: 2}
+  TailNorth: {fileID: 11400000, guid: e115e283303c30b44bed3b7af470c885, type: 2}
+  TailSouth: {fileID: 11400000, guid: 0de026432b5092f40afb0480f9e47427, type: 2}
+  TailWest: {fileID: 11400000, guid: bbbf2abb561579849b7654d73389d046, type: 2}
+  TailEast: {fileID: 11400000, guid: 3d83c681649ea834a846c7f3abcecef4, type: 2}
+  Horizontal: {fileID: 11400000, guid: d28a3448e668fb54f93ddd5a0e97aa0e, type: 2}
+  Vertical: {fileID: 11400000, guid: d1a2a04d0fa49dd40a04b19426e29986, type: 2}
+  NE: {fileID: 11400000, guid: 572bae199eae7bd4c8aaff4857a154f5, type: 2}
+  SE: {fileID: 11400000, guid: 6992cbc4b83f944429348bbb7b67b9be, type: 2}
+  NW: {fileID: 11400000, guid: c0236baf2b4c682478606eda73c4d272, type: 2}
+  SW: {fileID: 11400000, guid: 833141465206a1c49a4cd4f905445894, type: 2}
