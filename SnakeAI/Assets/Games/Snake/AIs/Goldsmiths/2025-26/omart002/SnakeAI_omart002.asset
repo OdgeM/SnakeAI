@@ -12,13 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2021eaa460d91cf48b4bb8bbd27db92f, type: 3}
   m_Name: SnakeAI_omart002
   m_EditorClassIdentifier: Assembly-CSharp::Snake.omart002.SnakeAI_omart002
-  StudentLogin: yourlogin
-  StudentName: FirstName LastName
-  StudentEmail: youremail@gold.ac.uk
-  AIName: AI Name
+  StudentLogin: omart002
+  StudentName: Oliver Martin
+  StudentEmail: omart002@gold.ac.uk
+  AIName: Big Boss
   AIDescription: The description of your AI
   PlotData:
-    Data: []
+    Data:
+    - {x: 1549, y: 82}
+    - {x: 651, y: 49}
+    - {x: 847, y: 51}
+    - {x: 807, y: 49}
+    - {x: 1355, y: 81}
+    - {x: 1027, y: 67}
+    - {x: 1471, y: 80}
+    - {x: 1891, y: 96}
+    - {x: 1593, y: 90}
+    - {x: 947, y: 56}
+    - {x: 855, y: 50}
+    - {x: 1362, y: 83}
+    - {x: 1907, y: 100}
+    - {x: 1106, y: 67}
+    - {x: 1453, y: 81}
+    - {x: 529, y: 35}
+    - {x: 1219, y: 71}
+    - {x: 943, y: 63}
+    - {x: 1595, y: 89}
+    - {x: 1434, y: 78}
+    - {x: 847, y: 51}
+    - {x: 557, y: 37}
+    - {x: 1561, y: 82}
+    - {x: 1065, y: 71}
+    - {x: 1271, y: 72}
+    - {x: 1763, y: 99}
+    - {x: 909, y: 55}
+    - {x: 1141, y: 67}
+    - {x: 1649, y: 101}
+    - {x: 784, y: 54}
+    - {x: 1194, y: 70}
+    - {x: 935, y: 59}
+    - {x: 1519, y: 91}
+    - {x: 1858, y: 104}
+    - {x: 869, y: 56}
+    - {x: 1232, y: 72}
+    - {x: 1391, y: 89}
+    - {x: 1541, y: 93}
+    - {x: 997, y: 61}
+    - {x: 1067, y: 78}
+    - {x: 1799, y: 92}
     BarsData: []
     Dirty: 1
     Min: {x: 0, y: 0}

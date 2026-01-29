@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Linq;
 using AlanZucconi.AI.BT;
 using AlanZucconi.Snake;
 
@@ -11,7 +11,27 @@ namespace Snake.omart002
     {
         public override Node CreateBehaviourTree(SnakeGame Snake)
         {
-            return Action.Nothing;
+            return new Selector
+               (
+                new Filter
+                    (
+                        Snake.IsFoodReachable,            // If food is reachable...
+                        new Action(Snake.MoveTowardsFood) // ...move towards the food
+                    ),
+
+                new Action
+                    (
+                        () => Snake.MoveTowards
+                        (
+                            Snake
+                            .AvailableNeighbours(Snake.TailPosition)
+                            .FirstOrDefault(position => Snake.IsReachable(position))
+                        )
+                    )
+
+            );
+
+
         }
     }
 }
