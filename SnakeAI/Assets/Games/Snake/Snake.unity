@@ -351,12 +351,12 @@ MonoBehaviour:
   Delay: 0
   PerformClassicTest: 1
   PerformChallengeTest: 1
-  TestsPerAI: 500
+  TestsPerAI: 54
   Rendering: 0
   ClearData: 1
   AIs:
   - {fileID: 11400000, guid: 266c803051a91c140983b348facec64f, type: 2}
-  - {fileID: 11400000, guid: 639e024f9d13ab948957a8d33732568c, type: 2}
+  - {fileID: 11400000, guid: 46e92955f12037f459bf654638e19d52, type: 2}
 --- !u!4 &1118517423
 Transform:
   m_ObjectHideFlags: 0
@@ -403,17 +403,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridSize: {x: 25, y: 25}
   Running: 1
-  Delay: 0.1
-  PauseOnDeath: 0
+  Delay: 0
+  PauseOnDeath: 1
   MaxTicks: 10000
   Ticks: 0
   Score: 0
   FoodPosition: {x: 0, y: 0}
-  WallsPerFood: 3
+  WallsPerFood: 1
   StartingLength: 1
   Direction: 0
   HeadPosition: {x: 0, y: 0}
-  AI: {fileID: 11400000, guid: 639e024f9d13ab948957a8d33732568c, type: 2}
+  AI: {fileID: 11400000, guid: 266c803051a91c140983b348facec64f, type: 2}
   Rendering: 1
   Tilemap: {fileID: 378236383}
   Skin: {fileID: 11400000, guid: 6949578dde4c82d488e671eafc6665e4, type: 2}
