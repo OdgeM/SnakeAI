@@ -9,25 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2021eaa460d91cf48b4bb8bbd27db92f, type: 3}
-  m_Name: SnakeAI_omart002
-  m_EditorClassIdentifier: Assembly-CSharp::Snake.omart002.SnakeAI_omart002
-  StudentLogin: omart002
-  StudentName: Oliver Martin
-  StudentEmail: omart002@gold.ac.uk
-  AIName: Big Boss
+  m_Script: {fileID: 11500000, guid: c462bd5866ff86f469474ade99873e1a, type: 3}
+  m_Name: SnakeAI_omart002_v2
+  m_EditorClassIdentifier: Assembly-CSharp::Snake.omart002_v2.SnakeAI_omart002_v2
+  StudentLogin: yourlogin
+  StudentName: FirstName LastName
+  StudentEmail: youremail@gold.ac.uk
+  AIName: AI Name
   AIDescription: The description of your AI
   PlotData:
-    Data:
-    - {x: 1355, y: 72}
-    - {x: 1355, y: 72}
+    Data: []
     BarsData: []
     Dirty: 1
-    Min: {x: 1063, y: 58}
-    Max: {x: 10000, y: 196}
-    Quartile1: {x: 3457.75, y: 128.75}
-    Quartile2: {x: 4935.5, y: 155}
-    Quartile3: {x: 4935.5, y: 176}
+    Min: {x: 0, y: 0}
+    Max: {x: 0, y: 0}
+    Quartile1: {x: 0, y: 0}
+    Quartile2: {x: 0, y: 0}
+    Quartile3: {x: 0, y: 0}
   PlotDataChallenge:
     Data: []
     BarsData: []

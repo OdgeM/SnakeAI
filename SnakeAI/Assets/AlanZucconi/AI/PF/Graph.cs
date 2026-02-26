@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.UI;
 
 namespace AlanZucconi.AI.PF
 {

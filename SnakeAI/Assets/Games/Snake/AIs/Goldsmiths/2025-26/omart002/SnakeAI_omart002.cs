@@ -43,7 +43,7 @@ namespace Snake.omart002
 
 
                                 Vector2Int newTailPosition = Snake.Body.ToList()[Snake.Body.Count - distance];
-                                var reachableTail = Snake.AvailableNeighbours(newTailPosition).FirstOrDefault(position => Snake.DistanceFrom(Snake.FoodPosition, position) != int.MaxValue);
+                                var reachableTail = Snake.AvailableNeighbours(newTailPosition).FirstOrDefault(position => grid.Pathfind(Snake.FoodPosition, position) != new Vector2Int(0, 0));
 
                                 //if (reachableTail != new Vector2Int(0, 0))
                                 //Debug.Log("FOOD");
@@ -56,58 +56,59 @@ namespace Snake.omart002
                (
                     () =>
                     {
-                    //Debug.Log("AVOIDING");
-                    Vector2Int target = new();
-                    var potentialMoves = grid.Nodes[Snake.HeadPosition].ToList();
-                    if (Snake.IsFoodReachable())
-                    {
-
-
-                        if (potentialMoves.Count() > 0)
+                        //Debug.Log("AVOIDING");
+                        Vector2Int target = new();
+                        var potentialMoves = grid.Nodes[Snake.HeadPosition].ToList();
+                        if (Snake.IsFoodReachable())
                         {
-                            var foodDistance = potentialMoves.Select(pos => Snake.DistanceFrom(pos.Item1, Snake.FoodPosition) * (.5f + 1.5f - pos.Item2)).Where(i => i != int.MaxValue);
 
-                            if (foodDistance.Count() > 0)
+
+                            if (potentialMoves.Count() > 0)
                             {
-                                //Debug.Log("FOOD");
-                                float maxFoodDistance = foodDistance.Max();
-                                target = potentialMoves.First(pos => Snake.DistanceFrom(pos.Item1, Snake.FoodPosition) * (.5f + 1.5f - pos.Item2)  == maxFoodDistance).Item1;
+                                var foodDistance = potentialMoves.Select(pos => Snake.DistanceFrom(pos.Item1, Snake.FoodPosition) * (.5f + 1.5f - pos.Item2)).Where(i => i < int.MaxValue*.5f);
+
+                                if (foodDistance.Count() > 0)
+                                {
+                                    //Debug.Log("FOOD");
+                                    float maxFoodDistance = foodDistance.Max();
+                                    target = potentialMoves.First(pos => Snake.DistanceFrom(pos.Item1, Snake.FoodPosition) * (.5f + 1.5f - pos.Item2) == maxFoodDistance).Item1;
+                                }
                             }
+
                         }
-
-                    }
-                    else
-                    {
-
-                        List<Vector2Int> reversedBody = Snake.Body.Reverse().ToList();
-                        int idx = 0;
-
-                        foreach (Vector2Int body in reversedBody)
+                        else
                         {
-                            idx++;
-                            var newTarget = grid.ReachForBody(body);
-                            if (newTarget != new Vector2(0,0)) {
 
-                                target = newTarget;
-                                break;
+                            List<Vector2Int> reversedBody = Snake.Body.Reverse().ToList();
+                            int idx = 0;
+
+                            foreach (Vector2Int body in reversedBody)
+                            {
+                                idx++;
+                                var newTarget = grid.ReachForBody(body);
+                                if (newTarget != new Vector2(0, 0))
+                                {
+
+                                    target = newTarget;
+                                    break;
+                                }
+
+
                             }
-
-
-                        }
 
                             if (target == new Vector2Int(0, 0))
                                 Debug.Log("Body Check gone wrong");
 
-                        
-                        
 
-                        var targetDistance = potentialMoves.Select(pos => Snake.DistanceFrom(pos.Item1, target) * (.5f + 1.5f - pos.Item2)).Where(i => i != int.MaxValue);
-                        if (targetDistance.Count() > 0)
-                        {
-                            //Debug.Log("TAIL");
-                            float maxDistance = targetDistance.Max();
-                            target = potentialMoves.First(pos => Snake.DistanceFrom(pos.Item1, target) * (.5f + 1.5f - pos.Item2) == maxDistance).Item1;
-                        }
+
+
+                            var targetDistance = potentialMoves.Select(pos => Snake.DistanceFrom(pos.Item1, target) * (.5f + 1.5f - pos.Item2)).Where(i => i < int.MaxValue * .5f);
+                            if (targetDistance.Count() > 0)
+                            {
+                                //Debug.Log("TAIL");
+                                float maxDistance = targetDistance.Max();
+                                target = potentialMoves.First(pos => Snake.DistanceFrom(pos.Item1, target) * (.5f + 1.5f - pos.Item2) == maxDistance).Item1;
+                            }
 
                             /*
                             if (Snake.DistanceFrom(Snake.HeadPosition, target) < idx && !Snake.IsFoodReachable())
@@ -129,7 +130,7 @@ namespace Snake.omart002
                             }
                             else
                             {
-                                var foodDistance = potentialMoves.Select(pos => Snake.DistanceFrom(pos.Item1, Snake.FoodPosition) * (.5f + 1.5f - pos.Item2)).Where(i => i != int.MaxValue);
+                                var foodDistance = potentialMoves.Select(pos => Snake.DistanceFrom(pos.Item1, Snake.FoodPosition) * (.5f + 1.5f - pos.Item2)).Where(i => i < int.MaxValue*.5f);
 
                                 if (foodDistance.Count() > 0)
                                 {
@@ -138,12 +139,13 @@ namespace Snake.omart002
                                     target = potentialMoves.First(pos => Snake.DistanceFrom(pos.Item1, Snake.FoodPosition) * (.5f + 1.5f - pos.Item2) == maxFoodDistance).Item1;
                                 }
                             }
-                                
+
                         }
 
 
                         if (target == new Vector2Int(0, 0))
                         {
+                            Debug.Log("OH NO");
                             target = Snake.AvailableNeighbours(Snake.HeadPosition).FirstOrDefault();
                         }
 
@@ -157,7 +159,7 @@ namespace Snake.omart002
             );
         }
 
-  
+
 
 
         private bool CanTraverse(SnakeGame snake, Vector2Int location)
@@ -232,15 +234,15 @@ namespace Snake.omart002
                     {
                         walls[v] = isWall;
                         SetWall(v);
-                    }                
+                    }
                 }
-                var deadEnds = (walls.Keys.Where(w => w != snake.HeadPosition && Nodes.ContainsKey(w) && Nodes[w].Count() == 1 ));
+                var deadEnds = (walls.Keys.Where(w => w != snake.HeadPosition && w != snake.FoodPosition && Nodes.ContainsKey(w) && Nodes[w].Count() == 1 && Nodes[w].Count(n => n.Item1 == snake.TailPosition) == 0));
                 while (deadEnds.Count() > 0)
                 {
                     foreach (Vector2Int v in deadEnds.ToList())
                     {
                         walls[v] = true;
-                        SetWall(v); 
+                        SetWall(v);
                     }
                 }
 
@@ -263,23 +265,24 @@ namespace Snake.omart002
                         {
                             if (!walls[newLocation])
                             {
-                                float currentDistance = Mathf.Max(Mathf.Abs(v.x-midpoint.x)/snake.GridSize.x, Mathf.Abs(v.y-midpoint.y)/snake.GridSize.y);
-                                float newDistance = Mathf.Max(Mathf.Abs(newLocation.x - midpoint.x) / snake.GridSize.x, Mathf.Abs(newLocation.y - midpoint.y) / snake.GridSize.y);
-
                                 float toWeight = 1;
                                 float fromWeight = 1;
 
-                                if (newDistance > currentDistance)
+                                if (v.x > v.y)
                                 {
-                                    toWeight = 1.5f;
-                                    fromWeight = 0.75f;
+                                    if (newLocation.x != v.x)
+                                    {
+                                        toWeight = 10f;
+                                    }
                                 }
-                                else if (newDistance < currentDistance)
+                                else if (v.y > v.x)
                                 {
-                                    fromWeight = 1.5f;
-                                    toWeight = 0.75f;
+
+                                    if (newLocation.y != v.y)
+                                    {
+                                        toWeight = 10f;
+                                    }
                                 }
-         
 
 
                                 Connect(v, newLocation, toWeight);
@@ -298,7 +301,7 @@ namespace Snake.omart002
             }
 
 
-            public Vector2Int Pathfind(Vector2Int start,  Vector2Int end)
+            public Vector2Int Pathfind(Vector2Int start, Vector2Int end)
             {
                 var path = this.AStar(
                     start, end,
@@ -309,7 +312,7 @@ namespace Snake.omart002
                 }
                 else
                 {
-                    return new Vector2Int(0,0);
+                    return new Vector2Int(0, 0);
                 }
             }
 
